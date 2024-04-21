@@ -5,19 +5,33 @@
     <title>Dictionary</title>
 </head>
 <body>
-<input type="text" id="text" placeholder="Nhap tu:">
-<button onclick="translate()">Translate</button>
+<input type="text" id="textEng" placeholder="Nhap tu:">
+<button onclick="trans()">Translate</button>
+<p id="result"></p>
 <script>
-    let viet = ["một","hai","ba","bốn","năm","sáu","bảy","tám","chín","mười"];
+    function trans(){
     let eng = ["one","two","three","four","five","six","seven","eight","nine","ten"];
-    let str = document.getElementById("text").value;
-    let value;
-
-    function translate(){
+    let viet = ["một","hai","ba","bốn","năm","sáu","bảy","tám","chín","mười"];
+    let inputEng = document.getElementById("textEng").value;
+    let index = 0;
+    let result = "";
         for (let i = 0; i < eng.length; i++) {
-            
+            if(inputEng == eng[i]) {
+                index = i;
+                for (let j = 0; j < viet.length; j++) {
+                    if(index == j) {
+                        result = viet[j];
+                        break;
+                    }
+                } if (result !== "") {
+                    break;
+                }
+            }
         }
-}
+        document.getElementById("result").innerHTML= result;
+    }
+
+
 </script>
 </body>
 </html>
