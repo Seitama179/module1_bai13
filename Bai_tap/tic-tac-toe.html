@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic-tac-toe</title>
+</head>
+<body onload="drawBoard()">
+<script>
+    let isPlayer1 = true;
+    let arr = [["", "", "", ""],["", "", "", ""],["", "", "", ""],["", "", "", ""]];
+    function drawBoard() {
+        let board = "<table width='500px' height='500px' border='1'>"
+        for (let i = 0; i < 4; i++) {
+            board += "<tr>"
+            for (let j = 0; j < 4; j++) {
+                board += "<th width='50px' height='50' onclick='play(" + i + "," + j + ")'>" + arr[i][j] + "</th>"
+            }
+            board += "</tr>"
+        }
+        board += "</table>";
+        document.body.innerHTML = "";
+        document.write(board);
+    }
+    function play(i, j) {
+        if(arr[i][j] == "") {
+            if (isPlayer1) {
+                arr[i][j] = "X";
+                checkWin("X")
+            } else {
+                arr[i][j] = "O";
+                checkWin("O")
+            }
+            isPlayer1 = !isPlayer1;
+            drawBoard();
+        }
+    }
+
+    function checkWin(char) {
+        //kiem tra hang doc
+        for (let i = 0; i < 2; i++) {
+            for (let j = 0; j < 4; j++) {
+                if(arr[i][j] == char) {
+                    if( arr[i+1][j] == char && arr[i+2][j] == char) {
+                        alert(char +" la nguoi thang");
+                        return;
+                    }
+                }
+            }
+        }
+        //kiem tra hang ngang
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 2; j++) {
+                if(arr[i][j] == char) {
+                    if(arr[i][j+1] == char && arr[i][j+2] == char) {
+                        alert(char +" la nguoi thang");
+                        return;
+                    }
+                }
+            }
+        }
+        //kiem tra duong cheo thuan
+        for (let i = 0; i < 2; i++) {
+            for (let j = 0; j < 2; j++) {
+                if(arr[i][j] == char) {
+                    if(arr[i+1][j+1] == char && arr[i+2][j+2] == char) {
+                        alert(char +" la nguoi thang");
+                        return;
+                    }
+                }
+            }
+        }
+        //kiem tra duong cheo nghich
+        for (let i = 0; i < 2; i++) {
+            for (let j = 2; j < 4; j++) {
+                if(arr[i][j] == char) {
+                    if(arr[i+1][j-1] == char && arr[i+2][j-2] == char) {
+                        alert(char +" la nguoi thang");
+                        return;
+                    }
+                }
+            }
+        }
+    }
+</script>
+</body>
+</html>
